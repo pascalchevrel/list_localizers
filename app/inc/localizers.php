@@ -1,33 +1,126 @@
 <?php
+
+$exclusion_list = [
+    'catbert@laptop',
+    'flod@lodolo.net',
+    'thchevalier@mozilla.com',
+    'flodolo@mozilla.com',
+    'craigcook@gmail.com',
+    'steven@silverorange.com',
+    'dwayne@translate.org.za',
+    'pmclanahan@mozilla.com',
+    'dpoirier@caktusgroup.com',
+    'sancus@off.net',
+    'bking@mozilla.com',
+    'mkelly@mozilla.com',
+    'aricaud@mozilla.com',
+    'pascal.chevrel@mozilla-europe.org',
+    'jlong@mozilla.com',
+    'armenzg@mozilla.com',
+    'Unknown',
+    'l10n@mozilla.com',
+    'axel@pike.org',
+    'gozer@mozillamessaging.com',
+    'stas@mozilla.com',
+    'bhearsum@mozilla.com',
+    'bugzilla@standard8.plus.com',
+    'gandalf@mozilla.com',
+    'ehsan@mozilla.com',
+    'cltbld@moz2-linux-slave1.build.mozilla.org',
+    'ogi@fmi.uni-sofia.bg',
+    'ogi@triangle.bg',
+    'runabh@gmail.com',
+    'Callek@gmail.com',
+    'zbraniecki@mozilla.com',
+    'ludvigs@kimludvigsen',
+    'Kim Ludvigsen zludvigs@kimludvigsen@kimludvigsen.dk>',
+    'Kim Ludvigsen <ludvigs@kimludvigsen.dk',
+    'Kim Ludvigsen<ludvigs@kimludvigsen.dk',
+    'kim@kimludvigsen.dk',
+    'soeren@skroeder.dk',
+    'willyaranda@macbook-de-guillermo-leal.local',
+    'willyaranda@mozilla-hispano.org',
+    'jbeatty@mozilla.com',
+    'Julen Ruiz Aizpuru julenx@gmail.com',
+    'root@debian',
+    'goofyfr@gmail.com',
+    'fredchat@frenchmozilla.org',
+    'fios@akerbeltz.com',
+    'swkothar@localhost.localdomain',
+    'ankit@localhost.localdomain',
+    'rranjan@localhost.localdomain',
+    'ivoks@titan',
+    'kamihir@freemail.com',
+    'francesco.lodolo@gmail.com',
+    'flodolo@meriadoc',
+    'flodolo@legolas',
+    'dev-null@hotmail.co.jp',
+    'giasher@gmail.com',
+    'kmoir@mozilla.com',
+    'Bjorn Svindseth <bjornivars@gmail.com<',
+    'ifelix@redhat.com',
+    'ifelix@localhost.localdomain',
+    'Pavel Cvrček@JasnaPaka.in.softeu.cz',
+    'selim@selimsumlu.com.tr',
+    'Selim@Selim-PCnet.hurguc.local',
+    'Selim@selim-win8.hurguc.local',
+    'Selim@Selim-vp',
+    'rail@openoffice.org',
+    'timdream@gmail.com',
+    'pascal.chevrel@free.fr',
+    'theo.chevalier11@gmail.com',
+    'kohei.yoshino@gmail.com',
+    'fwolff@localhost',
+    'franc@czilla.cz',
+    'Pavel Cvrček@JasnaPaka',
+    'ludvigs@kimludvgsen.dk',
+    'pi@localhost.localdomain',
+    'ville@debian',
+    'timar@AndrasX60',
+    'lloco@Carlos',
+    'lloco@Carlos.lan',
+    'lloco@carlos',
+    'joao.neves@intraneia.com',
+    'lloco@carlos.lan',
+    'lloco@carlos.netvisao.pt',
+    'lloco@carlos.192.168.10.1',
+    'alex@narro.softwreliber.ro',
+    'alex@localhost.localdomain',
+    'brian@mozdev.org',
+    'besnik@localhost.localdomain',
+    'filmil%%gmail.com@mozilla.org',
+    'arjunaraoc@googlemail.com',
+    'arjun@ubuntu',
+    'admin@localhost',
+    'desktop@desktop-PC',
+    'holywen@ubuntu.ubuntu-domain',
+    'dbaron@dbaron.org',
+    'user@users.org',
+    'hwine@mozilla.com',
+    'mdinic@mozilla.com',
+    'robert.bugzilla@gmail.com',
+    'benjamin@smedbergs.us',
+    'user@asus-1243860619',
+    'lsblakk@mozilla.com',
+    'akeybl@mozilla.com',
+    'arky@mozilla.com',
+    'rail@mozilla.com',
+    'mnoorenberghe@mozilla.com',
+    'gerv@mozilla.org',
+    'bugzilla@babylonsounds.com',
+    'sethb@mozilla.com',
+    'release@mozilla.com',
+    'gavin@gavinsharp.com',
+    'chris@sigxcpu.org',
+    'john@jon.org',
+    'revv@mailinator.com',
+    'root@terminal-45.usic.lan'
+];
+
 $people = [
-    'pascal@chevrel.org' => [
-        'name'         => 'Pascal Chevrel',
-        'locale'       => ['fr'],
-        'other_emails' => ['pascal.chevrel@free.fr', 'pascal@mozilla.com',
-                           'pascal.chevrel@mozilla-europe.org', 'pascalc@gmail.com'],
-        'other_names'  => ['pascalc', 'pascalchevrel'],
-    ],
-    'francesco.lodolo@mozillaitalia.org' => [
-        'name'         => 'Francesco Lodolo',
-        'locale'       => ['it'],
-        'other_emails' => ['flod@lodolo.net', 'flodolo@mozilla.com'],
-        'other_names'  => ['Francesco Lodolo (:flod)']
-    ],
     'friedel@translate.org.za' => [
         'name'         => 'friedel@translate.org.za',
         'locale'       => ['af'],
-        'other_emails' => [],
-        'other_names'  => []
-    ],
-    'walter@translate.org.za' => [
-        'name'         => 'Walter Leibbrandt',
-        'locale'       => ['lg'],
-        'other_emails' => [],
-        'other_names'  => []
-    ],
-    'jojoo.imbeah@suuch.com' => [
-        'name'         => 'Jojoo Imbeah',
-        'locale'       => ['ak'],
         'other_emails' => [],
         'other_names'  => []
     ],
@@ -37,26 +130,38 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'jojoo.imbeah@suuch.com' => [
+        'name'         => 'Jojoo Imbeah',
+        'locale'       => ['ak'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'kasahorow@suuch.com' => [
+        'name'         => 'Delalorm Kpeli',
+        'locale'       => ['ak'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'linux.anas@gmail.com' => [
-        'name'         => 'linux.anas@gmail.com',
+        'name'         => 'Anas El Husseini',
         'locale'       => ['ar'],
         'other_emails' => [],
         'other_names'  => []
     ],
     'khaledhosny@eglug.org' => [
         'name'         => 'Khaled Hosny',
-        'locale'       => ['wo'],
+        'locale'       => ['ar'],
         'other_emails' => [],
         'other_names'  => []
     ],
     'youghourta@gmail.com' => [
-        'name'         => 'youghourta@gmail.com',
+        'name'         => 'Youghourta Benali',
         'locale'       => ['ar'],
         'other_emails' => [],
         'other_names'  => []
     ],
     'ngoswami@redhat.com' => [
-        'name'         => 'ngoswami@redhat.com',
+        'name'         => 'Nilamdyuti Goswami',
         'locale'       => ['as'],
         'other_emails' => [],
         'other_names'  => []
@@ -76,6 +181,12 @@ $people = [
     'maacub@gmail.com' => [
         'name'         => 'Marcos Alvares',
         'locale'       => ['ast'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'ismet.sadiqov@gmail.com' => [
+        'name'         => 'Ismet Sadiqov',
+        'locale'       => ['az'],
         'other_emails' => [],
         'other_names'  => []
     ],
@@ -129,6 +240,12 @@ $people = [
     ],
     'runab@redhat.com' => [
         'name'         => 'Runa Bhattacharjee',
+        'locale'       => ['bn-IN'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'sayak.bugsmith@gmail.com' => [
+        'name'         => 'Sayak Sarkar',
         'locale'       => ['bn-IN'],
         'other_emails' => [],
         'other_names'  => []
@@ -253,6 +370,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'mail@philipp-wagner.com' => [
+        'name'         => 'Philipp Wagner',
+        'locale'       => ['de'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'archaeopteryx@coole-files.de' => [
         'name'         => 'Sebastian Hengst',
         'locale'       => ['de'],
@@ -301,11 +424,23 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    '46b@gulli.com' => [
+        'name'         => '46b@gulli.com',
+        'locale'       => ['de'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'jh@junetz.de' => [
         'name'         => 'Jens Hatlak',
         'locale'       => ['de'],
         'other_emails' => [],
         'other_names'  => []
+    ],
+    'h.halbach@gmail.com' => [
+        'name'         => 'Hagen Halbach',
+        'locale'       => ['de'],
+        'other_emails' => [],
+        'other_names'  => ['Hagen Halbach [Fux]']
     ],
     'opitz.michael@inode.at' => [
         'name'         => 'Michael Opitz',
@@ -322,11 +457,17 @@ $people = [
     'michael.koehler1@gmx.de' => [
         'name'         => 'Michael Köhler',
         'locale'       => ['de'],
-        'other_emails' => [],
-        'other_names'  => []
+        'other_emails' => ['coce@nurfuerspam.de'],
+        'other_names'  => ["Michael 'Coce' Koehler"]
     ],
     'thomas.lendo@gmail.com' => [
         'name'         => 'Thomas Schwecherl',
+        'locale'       => ['de'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'tobbi.bugs@googlemail.com' => [
+        'name'         => 'Tobias Markus',
         'locale'       => ['de'],
         'other_emails' => [],
         'other_names'  => []
@@ -499,6 +640,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'behnam@zwnj.org' => [
+        'name'         => 'Behnam Esfahbod',
+        'locale'       => ['fa'],
+        'other_emails' => [],
+        'other_names'  => ['Behnam Esfahbod "ZWNJ"']
+    ],
     'ehsan.akhgari@gmail.com' => [
         'name'         => 'Ehsan Akhgari',
         'locale'       => ['fa'],
@@ -529,6 +676,19 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'pascal@chevrel.org' => [
+        'name'         => 'Pascal Chevrel',
+        'locale'       => ['fr'],
+        'other_emails' => ['pascal.chevrel@free.fr', 'pascal@mozilla.com',
+                           'pascal.chevrel@mozilla-europe.org', 'pascalc@gmail.com'],
+        'other_names'  => ['pascalc', 'pascalchevrel'],
+    ],
+    'theo.chevalier11@gmail.com' => [
+        'name'         => 'Théo Chevalier',
+        'locale'       => ['fr'],
+        'other_emails' => ['thchevalier@mozilla.com'],
+        'other_names'  => [],
+    ],
     'daniel.calonnec@gmail.com' => [
         'name'         => 'Stephane Calonnec',
         'locale'       => ['fr'],
@@ -537,6 +697,18 @@ $people = [
     ],
     'benoit.leseul@gmail.com' => [
         'name'         => 'Benoit Leseul',
+        'locale'       => ['fr'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'goofy.bugzilla@gmail.com' => [
+        'name'         => 'Jean-Bernard Marcon',
+        'locale'       => ['fr'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'clochix@clochix.net' => [
+        'name'         => 'clochix@clochix.net',
         'locale'       => ['fr'],
         'other_emails' => [],
         'other_names'  => []
@@ -625,10 +797,10 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
-    'rranjan@redhat.com' => [
-        'name'         => 'Rajesh Ranjan',
-        'locale'       => ['mai'],
-        'other_emails' => ['rajeshkajha@yahoo.com'],
+    'amir.aharoni@mail.huji.acil' => [
+        'name'         => 'Amir E. Aharoni',
+        'locale'       => ['he'],
+        'other_emails' => [],
         'other_names'  => []
     ],
     'sale@ubuntu-hr.org' => [
@@ -661,6 +833,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'timar@fsf.hu' => [
+        'name'         => 'Andras Timar',
+        'locale'       => ['hu'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'kkemenczy@gmail.com' => [
         'name'         => 'Kálmán Kéménczy',
         'locale'       => ['hu'],
@@ -685,6 +863,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'francesco.lodolo@mozillaitalia.org' => [
+        'name'         => 'Francesco Lodolo',
+        'locale'       => ['it'],
+        'other_emails' => ['flod@lodolo.net', 'flodolo@mozilla.com'],
+        'other_names'  => ['Francesco Lodolo (:flod)']
+    ],
     'iacopo.benesperi@mozillaitalia.org' => [
         'name'         => 'Iacopo Benesperi',
         'locale'       => ['it'],
@@ -694,7 +878,7 @@ $people = [
     'robpri@email.it' => [
         'name'         => 'Roberto Principiano',
         'locale'       => ['it'],
-        'other_emails' => ['roberto.principiano@mozillaitalia.org'],
+        'other_emails' => ['roberto.principiano@mozillaitalia.org', 'robertoxp@roberto-xp'],
         'other_names'  => []
     ],
     'sara.todaro@mozillaitalia.org' => [
@@ -711,6 +895,12 @@ $people = [
     ],
     'h.rayflood@gmail.com' => [
         'name'         => 'ABE Hiroki (hATrayflood)',
+        'locale'       => ['ja'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'yu-yamamoto@kddi-tech.com' => [
+        'name'         => 'Yusuke Yamamoto',
         'locale'       => ['ja'],
         'other_emails' => [],
         'other_names'  => []
@@ -741,6 +931,12 @@ $people = [
     ],
     'dynamis@mozilla-japan.org' => [
         'name'         => 'Tomoya ASAI',
+        'locale'       => ['ja'],
+        'other_emails' => ['dynamis@firehacks.org'],
+        'other_names'  => []
+    ],
+    'hmatrjp@users.sourceforge.jp' => [
+        'name'         => 'Takeshi Hamasaki',
         'locale'       => ['ja'],
         'other_emails' => [],
         'other_names'  => []
@@ -778,14 +974,14 @@ $people = [
     'vannak.eng@gmail.com' => [
         'name'         => 'Vannak Eng',
         'locale'       => ['km'],
-        'other_emails' => [],
+        'other_emails' => ['inu2d@yahoo.com'],
         'other_names'  => []
     ],
     'svenkate@redhat.com' => [
         'name'         => 'Shankar Prasad',
         'locale'       => ['kn'],
-        'other_emails' => [],
-        'other_names'  => ['prasad.mvs@gmail.com']
+        'other_emails' => ['prasad.mvs@gmail.com'],
+        'other_names'  => ['Shankar Prasad [Pootle]']
     ],
     'hyeonseok@gmail.com' => [
         'name'         => 'Hyeonseok Shin',
@@ -817,6 +1013,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'thechunsik@gmail.com' => [
+        'name'         => 'thechunsik',
+        'locale'       => ['ko'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'bopy@Bopyui-MacBook-Air.local' => [
         'name'         => 'Bopy',
         'locale'       => ['ko'],
@@ -832,6 +1034,12 @@ $people = [
     'joone.hur@gmail.com' => [
         'name'         => 'Joone Hur',
         'locale'       => ['ko'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'walter@translate.org.za' => [
+        'name'         => 'Walter Leibbrandt',
+        'locale'       => ['lg'],
         'other_emails' => [],
         'other_names'  => []
     ],
@@ -856,13 +1064,19 @@ $people = [
     'rq@akl.lt' => [
         'name'         => 'Rimas Kudelis',
         'locale'       => ['lt'],
-        'other_emails' => [],
+        'other_emails' => ['rq@sugar'],
         'other_names'  => []
     ],
     'orvils@gmail.com' => [
         'name'         => 'Raivis Dejus',
         'locale'       => ['lv'],
         'other_emails' => ['orvils@laptop', 'orvils@orvils-laptop'],
+        'other_names'  => []
+    ],
+    'rranjan@redhat.com' => [
+        'name'         => 'Rajesh Ranjan',
+        'locale'       => ['mai'],
+        'other_emails' => ['rajeshkajha@yahoo.com'],
         'other_names'  => []
     ],
     'sangeeta_0975@yahoo.com' => [
@@ -898,7 +1112,7 @@ $people = [
     'sshedmak@redhat.com' => [
         'name'         => 'Sandeep Sheshrao Shedmake',
         'locale'       => ['mr'],
-        'other_emails' => [],
+        'other_emails' => ['sshedmak@localhost.localdomain'],
         'other_names'  => []
     ],
     'djaniketster@gmail.com' => [
@@ -934,7 +1148,7 @@ $people = [
     'bugzilla@planet.nl' => [
         'name'         => 'Tim Maks van den Broek',
         'locale'       => ['nl'],
-        'other_emails' => ['thunderbird-nl@planet.nl'],
+        'other_emails' => ['thunderbird-nl@planet.nl', 'timmaks@tim-laptop', 'user@asus-1243860619.lan'],
         'other_names'  => []
     ],
     'bjornivars@gmail.com' => [
@@ -971,7 +1185,9 @@ $people = [
         'name'         => 'Amanpreet Singh Alam',
         'locale'       => ['pa-IN'],
         'other_emails' => ['apbrar@gmail.com', 'aalam@users.sf.net',
-                           'areet.alam@gmail.com', 'apreet.alam@gmail.com'],
+                           'areet.alam@gmail.com', 'apreet.alam@gmail.com',
+                           'aalam@alam.satluj.com',  'aalam@localhost.localdomain',
+                           'aalam@linux-1f05.site'],
         'other_names'  => []
     ],
     'splewako@aviary.pl' => [
@@ -1025,13 +1241,13 @@ $people = [
     'fernandopsilveira@yahoo.com.br' => [
         'name'         => 'Fernando Pereira Silveira',
         'locale'       => ['pt-BR'],
-        'other_emails' => [],
+        'other_emails' => ['fenandopsilveira@yahoo.com.br'],
         'other_names'  => []
     ],
     'hultmann@gmail.com' => [
         'name'         => 'Jeferson Hultmann',
         'locale'       => ['pt-BR'],
-        'other_emails' => [],
+        'other_emails' => ['Eu@Jeferson-PC'],
         'other_names'  => []
     ],
     'asrail@gmail.com' => [
@@ -1082,8 +1298,20 @@ $people = [
         'other_emails' => ['alexandru.szasz@lingo24.com'],
         'other_names'  => []
     ],
+    'raul.malea@mozilla.ro' => [
+        'name'         => 'Raul Malea',
+        'locale'       => ['ro'],
+        'other_emails' => ['raul.malea@gmail.com'],
+        'other_names'  => []
+    ],
     'unghost@mozilla-russia.org' => [
         'name'         => 'Alexander L. Slovesnik',
+        'locale'       => ['ru'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'lakostis@mozilla-russia.org' => [
+        'name'         => 'Konstantin A. Lepikhov',
         'locale'       => ['ru'],
         'other_emails' => [],
         'other_names'  => []
@@ -1127,7 +1355,7 @@ $people = [
     'sektormaster@atlas.sk' => [
         'name'         => 'Branislav Rozbora',
         'locale'       => ['sk'],
-        'other_emails' => ['rozbora@mozilla.sk'],
+        'other_emails' => ['rozbora@mozilla.sk', 'Branislav@IBM-BB'],
         'other_names'  => []
     ],
     'smolejv@gmx.net' => [
@@ -1168,6 +1396,12 @@ $people = [
     ],
     'tumbas93@gmail.com' => [
         'name'         => 'Vanja Tumbas',
+        'locale'       => ['sr'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'milan@mozilla.com' => [
+        'name'         => 'Milan Sreckovic',
         'locale'       => ['sr'],
         'other_emails' => [],
         'other_names'  => []
@@ -1214,6 +1448,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'bonifacechallo@yahoo.com' => [
+        'name'         => 'Boniface Challo',
+        'locale'       => ['sw'],
+        'other_emails' => [],
+        'other_names'  => ['Boniface']
+    ],
     'arunprakash.pts@gmail.com' => [
         'name'         => 'Arun Prakash',
         'locale'       => ['ta'],
@@ -1235,11 +1475,17 @@ $people = [
     'kkrothap@redhat.com' => [
         'name'         => 'Krishnababu Krothapalli',
         'locale'       => ['te'],
-        'other_emails' => [],
+        'other_emails' => ['k.meetme@gmail.com', 'kkrothap@localhost.localdomain'],
         'other_names'  => []
     ],
     'veeven@gmail.com' => [
         'name'         => 'Veeven',
+        'locale'       => ['te'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'arjunaraoc@gmail.com' => [
+        'name'         => 'Arjuna Rao',
         'locale'       => ['te'],
         'other_emails' => [],
         'other_names'  => []
@@ -1316,6 +1562,12 @@ $people = [
         'other_emails' => [],
         'other_names'  => ['Ousmane Faty NDONGO [pootle]']
     ],
+    'issasamb@gmail.com' => [
+        'name'         => 'Dominique Rochefort',
+        'locale'       => ['wo'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'shaohua.wen@gmail.com' => [
         'name'         => 'Shaohua Wen',
         'locale'       => ['zh-CN'],
@@ -1340,116 +1592,16 @@ $people = [
         'other_emails' => [],
         'other_names'  => []
     ],
-];
-
-$exclusion_list = [
-    'catbert@laptop',
-    'flod@lodolo.net',
-    'thchevalier@mozilla.com',
-    'flodolo@mozilla.com',
-    'craigcook@gmail.com',
-    'steven@silverorange.com',
-    'dwayne@translate.org.za',
-    'pmclanahan@mozilla.com',
-    'dpoirier@caktusgroup.com',
-    'sancus@off.net',
-    'bking@mozilla.com',
-    'mkelly@mozilla.com',
-    'aricaud@mozilla.com',
-    'pascal.chevrel@mozilla-europe.org',
-    'jlong@mozilla.com',
-    'armenzg@mozilla.com',
-    'Unknown',
-    'l10n@mozilla.com',
-    'axel@pike.org',
-    'gozer@mozillamessaging.com',
-    'stas@mozilla.com',
-    'bhearsum@mozilla.com',
-    'pascalc@gmail.com',
-    'bugzilla@standard8.plus.com',
-    'gandalf@mozilla.com',
-    'ehsan@mozilla.com',
-    'cltbld@moz2-linux-slave1.build.mozilla.org',
-    'ogi@fmi.uni-sofia.bg',
-    'ogi@triangle.bg',
-    'runabh@gmail.com',
-    'Callek@gmail.com',
-    'zbraniecki@mozilla.com',
-    'ludvigs@kimludvigsen',
-    'Kim Ludvigsen zludvigs@kimludvigsen@kimludvigsen.dk>',
-    'Kim Ludvigsen <ludvigs@kimludvigsen.dk',
-    'Kim Ludvigsen<ludvigs@kimludvigsen.dk',
-    'kim@kimludvigsen.dk',
-    'soeren@skroeder.dk',
-    'willyaranda@macbook-de-guillermo-leal.local',
-    'willyaranda@mozilla-hispano.org',
-    'jbeatty@mozilla.com',
-    'Julen Ruiz Aizpuru julenx@gmail.com',
-    'root@debian',
-    'goofyfr@gmail.com',
-    'fredchat@frenchmozilla.org',
-    'fios@akerbeltz.com',
-    'swkothar@localhost.localdomain',
-    'ankit@localhost.localdomain',
-    'rranjan@localhost.localdomain',
-    'ivoks@titan',
-    'kamihir@freemail.com',
-    'francesco.lodolo@gmail.com',
-    'flodolo@meriadoc',
-    'flodolo@legolas',
-    'dev-null@hotmail.co.jp',
-    'giasher@gmail.com',
-    'kmoir@mozilla.com',
-    'Bjorn Svindseth <bjornivars@gmail.com<',
-    'ifelix@redhat.com',
-    'ifelix@localhost.localdomain',
-    'Pavel Cvrček@JasnaPaka.in.softeu.cz',
-    'selim@selimsumlu.com.tr',
-    'Selim@Selim-PCnet.hurguc.local',
-    'Selim@selim-win8.hurguc.local',
-    'Selim@Selim-vp',
-    'rail@openoffice.org',
-    'timdream@gmail.com',
-    'pascal.chevrel@free.fr',
-    'theo.chevalier11@gmail.com',
-    'kohei.yoshino@gmail.com',
-    'fwolff@localhost',
-    'franc@czilla.cz',
-    'Pavel Cvrček@JasnaPaka',
-    'ludvigs@kimludvgsen.dk',
-    'pi@localhost.localdomain',
-    'ville@debian',
-    'timar@AndrasX60',
-    'lloco@Carlos',
-    'lloco@Carlos.lan',
-    'lloco@carlos',
-    'joao.neves@intraneia.com',
-    'lloco@carlos.lan',
-    'lloco@carlos.netvisao.pt',
-    'lloco@carlos.192.168.10.1',
-    'raul.malea@gmail.com',
-    'alex@narro.softwreliber.ro',
-    'alex@localhost.localdomain',
-    'brian@mozdev.org',
-    'besnik@localhost.localdomain',
-    'filmil%%gmail.com@mozilla.org',
-    'arjunaraoc@googlemail.com',
-    'arjun@ubuntu',
-    'admin@localhost',
-    'desktop@desktop-PC',
-    'holywen@ubuntu.ubuntu-domain',
-    'dbaron@dbaron.org',
-    'user@users.org',
-    'hwine@mozilla.com',
-    'mdinic@mozilla.com',
-    'robert.bugzilla@gmail.com',
-    'benjamin@smedbergs.us',
-    'user@asus-1243860619',
-    'lsblakk@mozilla.com',
-    'akeybl@mozilla.com',
-    'arky@mozilla.com',
-    'rail@mozilla.com',
-    'mnoorenberghe@mozilla.com',
-    'gerv@mozilla.org',
-    'bugzilla@babylonsounds.com'
+    'timdream@moztw.org' => [
+        'name'         => 'Tim Guan-Tin Chien',
+        'locale'       => ['zh-TW'],
+        'other_emails' => ['tchien@mozilla.com'],
+        'other_names'  => []
+    ],
+    'exclusion@list' => [
+        'name'         => '',
+        'locale'       => ['zh-TW'],
+        'other_emails' => $exclusion_list,
+        'other_names'  => []
+    ],
 ];

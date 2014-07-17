@@ -6,9 +6,10 @@ $command_help = "Usage: committers.php [locale_code]\nExample: committers.php zh
 require_once __DIR__ . '/../inc/cli_init.php';
 require_once __DIR__ . '/../inc/scrap_emails.php';
 
+$localizers_logs = getLocalizersInLogs($exclusion_list);
 $aurora = $gaia = $www = [];
 
-foreach ($localizers as $key => $value) {
+foreach ($localizers_logs as $key => $value) {
     foreach(['aurora', 'gaia', 'www'] as $repo) {
         if (isset($value[$repo])) {
            $$repo = array_merge($$repo, $value[$repo]);
@@ -35,7 +36,7 @@ if (! isset($argv[1])) {
 $locale = trim($argv[1]);
 
 print "Locale: $locale\n";
-print getLocalizersForRepo('gaia', $locale, $localizers);
-print getLocalizersForRepo('aurora', $locale, $localizers);
-print getLocalizersForRepo('www', $locale, $localizers);
+print getLocalizersForRepo('gaia', $locale, $localizers_logs);
+print getLocalizersForRepo('aurora', $locale, $localizers_logs);
+print getLocalizersForRepo('www', $locale, $localizers_logs);
 

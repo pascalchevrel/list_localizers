@@ -1,7 +1,5 @@
 #!/usr/bin/env php
 <?php
-use Community\Directory;
-
 $command_help = "Usage: getLocalizer.php [email]\n"
               . "Example: getLocalizer.php pascal@chevrel.org\n";
 $missing_parameter = "Please give an email address as parameter.\n";
@@ -10,7 +8,6 @@ require_once __DIR__ . '/../inc/cli_init.php';
 require_once __DIR__ . '/../inc/scrap_logs.php';
 
 $email = trim($argv[1]);
-$localizers = new Directory($people);
 
 // reference time in the past
 $date = new DateTime('2000-01-01');

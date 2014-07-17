@@ -30,8 +30,6 @@ require_once __DIR__ . '/../inc/scrap_logs.php';
 
 $target = CACHE_PATH . 'cache_' . $locale . '_serial.php';
 
-
-$localizers = new Directory($people);
 $ignored_authors = ['ffxbld', 'calbld', 'seabld', 'tbirdbld'];
 $localizers_in_logs = [];
 $template = [];
