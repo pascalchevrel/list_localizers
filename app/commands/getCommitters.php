@@ -3,7 +3,7 @@
 
 $command_help = "Usage: committers.php [locale_code]\nExample: committers.php zh-TW\n";
 
-require_once __DIR__ . '/../inc/init.php';
+require_once __DIR__ . '/../inc/cli_init.php';
 require_once __DIR__ . '/../inc/scrap_emails.php';
 
 $aurora = $gaia = $www = [];

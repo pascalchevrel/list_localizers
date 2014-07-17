@@ -6,8 +6,7 @@ $command_help = "Usage: getLocalizer.php [email]\n"
               . "Example: getLocalizer.php pascal@chevrel.org\n";
 $missing_parameter = "Please give an email address as parameter.\n";
 
-require_once __DIR__ . '/../inc/init.php';
-require_once __DIR__ . '/../classes/Community/Directory.php';
+require_once __DIR__ . '/../inc/cli_init.php';
 require_once __DIR__ . '/../inc/scrap_logs.php';
 
 $email = trim($argv[1]);

@@ -3,5 +3,9 @@
         "pascalc/vcs" : "dev-master",
         "atoum/atoum" : "dev-master",
         "rhumsaa/array_column": "~1.1"
+    },
+
+    "autoload": {
+        "psr-0": {"Community": "app/classes/"}
     }
 }
