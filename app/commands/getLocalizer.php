@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+
 $command_help = "Usage: getLocalizer.php [email]\n"
               . "Example: getLocalizer.php pascal@chevrel.org\n";
 $missing_parameter = "Please give an email address as parameter.\n";

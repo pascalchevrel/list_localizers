@@ -114,7 +114,8 @@ $exclusion_list = [
     'chris@sigxcpu.org',
     'john@jon.org',
     'revv@mailinator.com',
-    'root@terminal-45.usic.lan'
+    'root@terminal-45.usic.lan',
+    'kev@mozilla.com'
 ];
 
 $people = [
@@ -1319,12 +1320,6 @@ $people = [
     'ragnaar@mozilla-russia.org' => [
         'name'         => 'Alexey Gubanov',
         'locale'       => ['ru'],
-        'other_emails' => [],
-        'other_names'  => []
-    ],
-    'kev@mozilla.com' => [
-        'name'         => 'Kev Needham',
-        'locale'       => ['tr'],
         'other_emails' => [],
         'other_names'  => []
     ],
