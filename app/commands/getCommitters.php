@@ -6,7 +6,7 @@ $command_help = "Usage: committers.php [locale_code]\nExample: committers.php zh
 require_once __DIR__ . '/../inc/cli_init.php';
 require_once __DIR__ . '/../inc/scrap_emails.php';
 
-$localizers_logs = getLocalizersInLogs($exclusion_list);
+$localizers_logs = getLocalizersInLogs($exclusion_list, $people);
 $aurora = $gaia = $www = [];
 
 foreach ($localizers_logs as $key => $value) {

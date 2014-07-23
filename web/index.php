@@ -1,3 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<title>Summary</title>
+<style>
+table {
+    border-collapse:collapse;
+}
+td,th {
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+}
+</style>
+
+</head>
+<body>
 <?php
 use Community\Directory;
 
@@ -7,7 +23,7 @@ require_once __DIR__ . '/../app/inc/scrap_emails.php';
 Print "<h1>List of localizers</h1>";
 print '<p>Number of identified localizers that committed to our VCS: ' . count($people) . '</p>';
 
-$localizers_logs = getLocalizersInLogs($exclusion_list);
+$localizers_logs = getLocalizersInLogs($exclusion_list, $people);
 $aurora = $gaia = $www = [];
 
 foreach ($localizers_logs as $key => $value) {
@@ -55,8 +71,9 @@ foreach($all as $email) {
         CACHE_PATH . 'cache_' . $localizers->getLocale() . '_serial.php'
     ));
 
-    // We look for the last commit by the person
+    $commits = normalizeCommits($commits, $people);
 
+    // We look for the last commit by the person
     foreach ($commits as $key => $values) {
 
         if ($email == $values['email']) {
@@ -133,5 +150,45 @@ $get_vcs_stats('2014', $community_2014);
 
 $email_2013 = array_keys($community_2013);
 $email_2014 = array_keys($community_2014);
-echo "<pre>";
-print_r(array_diff($email_2013, $email_2014));
+$lost_in_2014 = array_diff($email_2013, $email_2014);
+
+print '<h3>' . count($lost_in_2014) . ' localizers that committed in 2013 but not in 2014<br><small>(some locales moved to Locamotion)</small></h3>';
+print '<table>';
+print '<tr>';
+print '<th>Locale</th><th>Name</th><th>Email</th><th>Date of last Commit</th><th>On</th>';
+print '</tr>';
+
+foreach($lost_in_2014 as $email) {
+
+    $localizers->setPerson($email);
+
+    $commits = unserialize(file_get_contents(
+        CACHE_PATH . 'cache_' . $localizers->getLocale() . '_serial.php'
+    ));
+
+    // reference time in the past
+    $date = new DateTime('2000-01-01');
+
+    // We look for the last commit by the person
+    foreach ($commits as $key => $values) {
+        if ($email == $values['email']) {
+            if ($values['date'] > $date) {
+                $date = $values['date'];
+                $changeset = $key;
+            }
+        }
+    }
+
+    print '<tr>'
+        . '<td>' . $localizers->getLocale() . '</td>'
+        . '<td>' . $localizers->getName() . '</td>'
+        . '<td>' . $email . '</td>'
+        . '<td>' . $date->format('Y-m-d') . '</td>'
+        . '<td>' . $commits[$changeset]['vcs'] . '</td>'
+        . '</tr>';
+}
+print '</table>';
+
+?>
+</body>
+</html>
