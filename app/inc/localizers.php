@@ -489,7 +489,7 @@ $people = [
         'name'         => 'Alfredos-Panagiotis Damkalis',
         'locale'       => ['el'],
         'other_emails' => [],
-        'other_names'  => []
+        'other_names'  => ['Alfredos-Panagiotis Damkalis [:fredy]']
     ],
     'sirios2222@yahoo.gr' => [
         'name'         => 'Joseph Psychas',
