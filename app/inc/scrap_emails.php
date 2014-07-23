@@ -1,6 +1,6 @@
 <?php
 
-function getLocalizersInLogs($exclusion_list) {
+function getLocalizersInLogs($exclusion_list, $people) {
     $cached_data = CACHE_PATH . 'emails.php' ;
 
     if (! file_exists($cached_data)) {
@@ -20,14 +20,14 @@ function getLocalizersInLogs($exclusion_list) {
             $gaia_path   = DATA . '/hg/GAIA/' . $gaia_locale . '/';
             $www_path    = DATA . '/svn/mozilla_org/' . $locale . '/';
 
-            $get_localizers = function($commits) use($exclusion_list, $locale) {
+            $get_localizers = function($commits) use($exclusion_list, $locale, $people) {
                 if ($locale == 'fr') {
                     $exclusion_list = array_diff(
                         $exclusion_list,
                         ['pascal.chevrel@free.fr', 'theo.chevalier11@gmail.com']
                     );
                 }
-                return array_values(array_diff(getEmails($commits), $exclusion_list));
+                return array_values(array_diff(getEmails($commits, $people), $exclusion_list));
             };
 
             $localizers[$locale]['gaia'] = [];

@@ -10,17 +10,34 @@ function undupe($array)
     return array_values(array_unique($array));
 }
 
-function getEmails($array)
+function normalizeCommits($commits, $people) {
+    foreach($commits as $key => $values) {
+        if ($values['email'] == 'Unknown') {
+            foreach($people as $people_key => $people_values) {
+                if ($values['author']  == $people_values['name']
+                    || in_array($values['author'], $people_values['other_names'])) {
+                    $commits[$key]['email'] = $people_key;
+                }
+            }
+
+        }
+    }
+
+    return $commits;
+}
+
+function getEmails($commits, $people)
 {
-    $array = array_unique(array_column($array, 'email'));
-    $array = array_filter(
-        $array,
+    $commits = normalizeCommits($commits, $people);
+    $emails  = array_unique(array_column($commits, 'email'));
+    $emails  = array_filter(
+        $emails,
         function($e) {
             return $e != 'Unknown email' && ! empty($e);
         }
     );
 
-    return array_values($array);
+    return array_values($emails);
 }
 
 function getLocalizersForRepo($project, $locale, $localizers) {

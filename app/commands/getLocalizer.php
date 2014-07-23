@@ -23,6 +23,8 @@ $commits = unserialize(file_get_contents(
 ));
 
 // We look for the last commit by the person
+$commits = normalizeCommits($commits, $people);
+
 foreach ($commits as $key => $values) {
     if ($email == $values['email']) {
         if ($values['date'] > $date) {
