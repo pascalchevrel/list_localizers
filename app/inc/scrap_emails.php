@@ -1,6 +1,7 @@
 <?php
 
-function getLocalizersInLogs($exclusion_list, $people) {
+function getLocalizersInLogs($exclusion_list, $people)
+{
     $cached_data = CACHE_PATH . 'emails.php' ;
 
     if (! file_exists($cached_data)) {
@@ -20,7 +21,7 @@ function getLocalizersInLogs($exclusion_list, $people) {
             $gaia_path   = DATA . '/hg/GAIA/' . $gaia_locale . '/';
             $www_path    = DATA . '/svn/mozilla_org/' . $locale . '/';
 
-            $get_localizers = function($commits) use($exclusion_list, $locale, $people) {
+            $get_localizers = function ($commits) use ($exclusion_list, $locale, $people) {
                 if ($locale == 'fr') {
                     $exclusion_list = array_diff(
                         $exclusion_list,
@@ -41,8 +42,9 @@ function getLocalizersInLogs($exclusion_list, $people) {
 
                 if (isset($localizers[$locale]['aurora'])) {
                     $localizers[$locale]['aurora'] = array_merge(
-                                                    $localizers[$locale]['aurora'],
-                                                    $get_localizers($aurora_commits));
+                        $localizers[$locale]['aurora'],
+                        $get_localizers($aurora_commits)
+                    );
                 } else {
                     $localizers[$locale]['aurora'] = $get_localizers($aurora_commits);
                 }
@@ -55,8 +57,9 @@ function getLocalizersInLogs($exclusion_list, $people) {
 
                 if (isset($localizers[$gaia_locale]['gaia'])) {
                     $localizers[$gaia_locale]['gaia'] = array_merge(
-                                                    $localizers[$gaia_locale]['gaia'],
-                                                    $get_localizers($gaia_commits));
+                        $localizers[$gaia_locale]['gaia'],
+                        $get_localizers($gaia_commits)
+                    );
                 } else {
                     $localizers[$gaia_locale]['gaia'] = $get_localizers($gaia_commits);
                 }
@@ -71,8 +74,9 @@ function getLocalizersInLogs($exclusion_list, $people) {
 
                 if (isset($localizers[$locale]['www'])) {
                     $localizers[$locale]['www'] = array_merge(
-                                                    $localizers[$locale]['www'],
-                                                    $get_localizers($www_commits));
+                        $localizers[$locale]['www'],
+                        $get_localizers($www_commits)
+                    );
                 } else {
                     $localizers[$locale]['www'] = $get_localizers($www_commits);
                 }

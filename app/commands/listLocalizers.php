@@ -34,9 +34,11 @@ $ignored_authors = ['ffxbld', 'calbld', 'seabld', 'tbirdbld'];
 $localizers_in_logs = [];
 $template = [];
 foreach (locales() as $locale) {
-    $commits = unserialize(file_get_contents(
-        CACHE_PATH . '/cache_' . $locale . '_serial.php'
-    ));
+    $commits = unserialize(
+        file_get_contents(
+            CACHE_PATH . '/cache_' . $locale . '_serial.php'
+        )
+    );
 
     foreach ($commits as $values) {
         $email  = $values['email'];
@@ -102,7 +104,7 @@ foreach (locales() as $locale) {
 
 // print_r($localizers_in_logs);
 $template2 = '';
-foreach($template as $email => $details) {
+foreach ($template as $email => $details) {
     $locale = implode(', ', $details['locale']);
     $template2 .= <<<TEMPLATE
         '$email' => [

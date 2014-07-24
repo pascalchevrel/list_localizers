@@ -10,9 +10,9 @@ $localizers_logs = getLocalizersInLogs($exclusion_list, $people);
 $aurora = $gaia = $www = [];
 
 foreach ($localizers_logs as $key => $value) {
-    foreach(['aurora', 'gaia', 'www'] as $repo) {
+    foreach (['aurora', 'gaia', 'www'] as $repo) {
         if (isset($value[$repo])) {
-           $$repo = array_merge($$repo, $value[$repo]);
+            $$repo = array_merge($$repo, $value[$repo]);
         }
     }
 }

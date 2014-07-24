@@ -1,13 +1,5 @@
 <?php
 
-function memory() {
-    print 'Memory peak: '
-          . memory_get_peak_usage(true)
-          . ' ('
-          . round((memory_get_peak_usage()/(1024*1024)),2)
-          . "MB)\n";
-}
-
 foreach (locales() as $locale) {
 
     if (startsWith($locale, 'es-')) {

@@ -10,10 +10,11 @@ function undupe($array)
     return array_values(array_unique($array));
 }
 
-function normalizeCommits($commits, $people) {
-    foreach($commits as $key => $values) {
+function normalizeCommits($commits, $people)
+{
+    foreach ($commits as $key => $values) {
         if ($values['email'] == 'Unknown') {
-            foreach($people as $people_key => $people_values) {
+            foreach ($people as $people_key => $people_values) {
                 if ($values['author']  == $people_values['name']
                     || in_array($values['author'], $people_values['other_names'])) {
                     $commits[$key]['email'] = $people_key;
@@ -32,7 +33,7 @@ function getEmails($commits, $people)
     $emails  = array_unique(array_column($commits, 'email'));
     $emails  = array_filter(
         $emails,
-        function($e) {
+        function ($e) {
             return $e != 'Unknown email' && ! empty($e);
         }
     );
@@ -40,7 +41,8 @@ function getEmails($commits, $people)
     return array_values($emails);
 }
 
-function getLocalizersForRepo($project, $locale, $localizers) {
+function getLocalizersForRepo($project, $locale, $localizers, $output = 'cli')
+{
     if ($project == 'gaia') {
         if (startsWith($locale, 'es-')) {
             $locale = 'es';
@@ -66,10 +68,31 @@ function getLocalizersForRepo($project, $locale, $localizers) {
         'www'    => 'mozilla.org',
     ];
 
-    $list = "\n{$repos[$project]}:\n";
-    foreach($localizers[$locale][$project] as $key => $email) {
-        $list .= ($key+1) . ": $email\n";
+    if ($output == 'cli') {
+        $list = "\n{$repos[$project]}:\n";
+        foreach ($localizers[$locale][$project] as $key => $email) {
+            $list .= ($key+1) . ": $email\n";
+        }
+    } else {
+        foreach ($localizers[$locale][$project] as $key => $email) {
+            $list[] = $email;
+        }
     }
+
+    return $list;
+}
+
+function htmlList($arr)
+{
+    $arr   = array_map(
+        function ($e) {
+            return "    <li>$e</li>\n";
+        },
+        $arr
+    );
+    $list  = "<ul>\n";
+    $list .= implode($arr);
+    $list .= "</ul>\n";
 
     return $list;
 }
@@ -99,7 +122,7 @@ function getRepositoryLog($path, $type = 'hg')
     if (! file_exists($file)) {
         if ($type == 'hg') {
             $repository = new VCS\Mercurial($path);
-        } elseif($type =='git') {
+        } elseif ($type =='git') {
             $repository = new VCS\Git($path);
         } else {
             $repository = new VCS\Subversion($path);
@@ -120,7 +143,7 @@ function locales()
 
     $files = array_filter(
         scandir($folder),
-        function($item) {
+        function ($item) {
             return ! startsWith($item, '.');
         }
     );

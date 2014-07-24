@@ -54,12 +54,12 @@ class Directory
             return true;
         }
 
-        foreach($this->people as $key => $values) {
+        foreach ($this->people as $key => $values) {
             if (isset($values['other_emails'])) {
                 if (in_array($email, $values['other_emails'])) {
-                   $this->person = [$key => $this->people[$key]];
+                    $this->person = [$key => $this->people[$key]];
 
-                   return true;
+                    return true;
                 }
             }
         }

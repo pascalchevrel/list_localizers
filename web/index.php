@@ -20,16 +20,16 @@ use Community\Directory;
 require_once __DIR__ . '/../app/inc/init.php';
 require_once __DIR__ . '/../app/inc/scrap_emails.php';
 
-Print "<h1>List of localizers</h1>";
+print "<h1>List of localizers</h1>";
 print '<p>Number of identified localizers that committed to our VCS: ' . count($people) . '</p>';
 
 $localizers_logs = getLocalizersInLogs($exclusion_list, $people);
 $aurora = $gaia = $www = [];
 
 foreach ($localizers_logs as $key => $value) {
-    foreach(['aurora', 'gaia', 'www'] as $repo) {
+    foreach (['aurora', 'gaia', 'www'] as $repo) {
         if (isset($value[$repo])) {
-           $$repo = array_merge($$repo, $value[$repo]);
+            $$repo = array_merge($$repo, $value[$repo]);
         }
     }
 }
@@ -62,7 +62,7 @@ $community_2013 = [];
 $community_2014 = [];
 $counter = 0;
 
-foreach($all as $email) {
+foreach ($all as $email) {
     if (!$localizers->setPerson($email)) {
         continue;
     }
@@ -79,39 +79,44 @@ foreach($all as $email) {
         if ($email == $values['email']) {
 
             if ($values['date'] > $y2014) {
-                if(! isset($community_2014[$email])) {
+                if (! isset($community_2014[$email])) {
                     $community_2014[$email] = $values;
-
                     $community_2014[$email]['vcs'] = [$values['vcs']];
                 } else {
-                    $community_2014[$email]['vcs'] = undupe(array_merge($community_2014[$email]['vcs'], [$values['vcs']]));
+                    $community_2014[$email]['vcs'] = undupe(
+                        array_merge($community_2014[$email]['vcs'], [$values['vcs']])
+                    );
                 }
             }
 
             if ($values['date'] < $y2014 && $values['date'] > $y2013) {
-                if(! isset($community_2013[$email])) {
+                if (! isset($community_2013[$email])) {
                     $community_2013[$email] = $values;
                     $community_2013[$email]['vcs'] = [$values['vcs']];
                 } else {
-                    $community_2013[$email]['vcs'] = undupe(array_merge($community_2013[$email]['vcs'], [$values['vcs']]));
+                    $community_2013[$email]['vcs'] = undupe(
+                        array_merge($community_2013[$email]['vcs'], [$values['vcs']])
+                    );
                 }
             }
 
             if ($values['date'] < $y2013 && $values['date'] > $y2012) {
-                if(! isset($community_2012[$email])) {
+                if (! isset($community_2012[$email])) {
                     $community_2012[$email] = $values;
                     $community_2012[$email]['vcs'] = [$values['vcs']];
                 } else {
-                    $community_2012[$email]['vcs'] = undupe(array_merge($community_2012[$email]['vcs'], [$values['vcs']]));
+                    $community_2012[$email]['vcs'] = undupe(
+                        array_merge($community_2012[$email]['vcs'], [$values['vcs']])
+                    );
                 }
             }
         }
     }
 
 }
-                    // var_dump($community_2014[$email]['vcs']); die;
 
-$y = function($year, $arr) {
+
+$y = function ($year, $arr) {
     print "$year: " . count($arr) . '<br>';
 };
 
@@ -119,20 +124,20 @@ $y('2012', $community_2012);
 $y('2013', $community_2013);
 $y('2014', $community_2014);
 
-$get_vcs_stats = function($year, $committers) {
+$get_vcs_stats = function ($year, $committers) {
     $hg = $svn = $both = 0;
 
     print "<h3>$year</h3>";
-    foreach($committers as $values) {
-        if (in_array('svn', $values['vcs']) && ! in_array('hg', $values['vcs'] )) {
+    foreach ($committers as $values) {
+        if (in_array('svn', $values['vcs']) && ! in_array('hg', $values['vcs'])) {
             $svn++;
         }
 
-        if (in_array('hg', $values['vcs']) && ! in_array('svn', $values['vcs'] )) {
+        if (in_array('hg', $values['vcs']) && ! in_array('svn', $values['vcs'])) {
             $hg++;
         }
 
-        if (in_array('hg', $values['vcs']) && in_array('svn', $values['vcs'] )) {
+        if (in_array('hg', $values['vcs']) && in_array('svn', $values['vcs'])) {
             $both++;
         }
     }
@@ -152,13 +157,14 @@ $email_2013 = array_keys($community_2013);
 $email_2014 = array_keys($community_2014);
 $lost_in_2014 = array_diff($email_2013, $email_2014);
 
-print '<h3>' . count($lost_in_2014) . ' localizers that committed in 2013 but not in 2014<br><small>(some locales moved to Locamotion)</small></h3>';
+print '<h3>' . count($lost_in_2014) . ' localizers that committed in 2013 but not in 2014<br>'
+    . '<small>(some locales moved to Locamotion)</small></h3>';
 print '<table>';
 print '<tr>';
 print '<th>Locale</th><th>Name</th><th>Email</th><th>Date of last Commit</th><th>On</th>';
 print '</tr>';
 
-foreach($lost_in_2014 as $email) {
+foreach ($lost_in_2014 as $email) {
 
     $localizers->setPerson($email);
 

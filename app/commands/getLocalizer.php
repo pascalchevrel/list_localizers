@@ -18,9 +18,11 @@ if (! $localizers->setPerson($email)) {
     die("This email is not one we have data for.\n");
 }
 
-$commits = unserialize(file_get_contents(
-    CACHE_PATH . 'cache_' . $localizers->getLocale() . '_serial.php'
-));
+$commits = unserialize(
+    file_get_contents(
+        CACHE_PATH . 'cache_' . $localizers->getLocale() . '_serial.php'
+    )
+);
 
 // We look for the last commit by the person
 $commits = normalizeCommits($commits, $people);
