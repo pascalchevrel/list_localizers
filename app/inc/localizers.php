@@ -646,13 +646,13 @@ $people = [
     'goofy.bugzilla@gmail.com' => [
         'name'         => 'Jean-Bernard Marcon',
         'locale'       => ['fr'],
-        'other_emails' => [],
+        'other_emails' => ['goofyfr@gmail.com'],
         'other_names'  => []
     ],
     'clochix@clochix.net' => [
         'name'         => 'clochix@clochix.net',
         'locale'       => ['fr'],
-        'other_emails' => ['goofyfr@gmail.com'],
+        'other_emails' => [],
         'other_names'  => []
     ],
     'filip@disque-monde.org' => [
