@@ -33,17 +33,24 @@ class Directory
     */
     public $person = [];
 
+    /**
+     * Constructor
+     *
+     * @param  array $source An array of localizers
+     * @return void
+     */
     public function __construct($source)
     {
         $this->people = $source;
     }
+
     /**
      * Extract a single file associated into $this->person
      * If the email requested is not a primary email used as key
      * in $this->people, we check if it is not among secondary emails,
      * in that case we reset the email to the primary email for this account.
      *
-     * @param  string $email
+     * @param  string  $email
      * @return boolean True if we have a match, False otherwise
      */
     public function setPerson($email)

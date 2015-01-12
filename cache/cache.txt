@@ -1,1 +1,0 @@
-Cache folder for serialized data extracted from VCS logs.

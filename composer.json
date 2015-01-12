@@ -2,7 +2,8 @@
     "require": {
         "pascalc/vcs" : "dev-master",
         "atoum/atoum" : "dev-master",
-        "rhumsaa/array_column": "~1.1"
+        "rhumsaa/array_column": "~1.1",
+        "symfony/var-dumper": "~2.6"
     },
 
     "autoload": {

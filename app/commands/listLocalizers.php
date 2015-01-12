@@ -5,34 +5,12 @@ use Community\Directory;
 $command_help = "List all the localizers we get from logs\n";
 
 require_once __DIR__ . '/../inc/cli_init.php';
-
-/*
-print "Setting up $email...\n";
-$localizers->setPerson($email);
-
-print "This person's name: ";
-print printCLI($localizers->getName());
-
-print "This person's locale: ";
-print printCLI($localizers->getLocale());
-
-print "This person's email: ";
-print printCLI($localizers->getEmail());
-
-print "All of this person's emails: ";
-print printCLI($localizers->getAllEmails());
-
-print "All of this person's names and aliases: ";
-print printCLI($localizers->getAllNames());
-*/
-
 require_once __DIR__ . '/../inc/scrap_logs.php';
-
-$target = CACHE_PATH . 'cache_' . $locale . '_serial.php';
 
 $ignored_authors = ['ffxbld', 'calbld', 'seabld', 'tbirdbld'];
 $localizers_in_logs = [];
 $template = [];
+
 foreach (locales() as $locale) {
     $commits = unserialize(
         file_get_contents(
@@ -99,11 +77,8 @@ foreach (locales() as $locale) {
     }
 }
 
-// print count($localizers_in_logs);
-// print_r(undupe($error));
-
-// print_r($localizers_in_logs);
 $template2 = '';
+
 foreach ($template as $email => $details) {
     $locale = implode(', ', $details['locale']);
     $template2 .= <<<TEMPLATE
