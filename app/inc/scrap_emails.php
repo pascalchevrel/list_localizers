@@ -1,4 +1,16 @@
 <?php
+function getGaiaLocale($locale)
+{
+    if (startsWith($locale, 'es-')) {
+        return 'es';
+    }
+
+    if (startsWith($locale, 'sr')) {
+        return 'sr-Cyrl';
+    }
+
+    return $locale;
+}
 
 function getLocalizersInLogs($exclusion_list, $people)
 {
@@ -9,17 +21,20 @@ function getLocalizersInLogs($exclusion_list, $people)
 
         foreach (locales() as $locale) {
 
-            if (startsWith($locale, 'es-')) {
-                $gaia_locale = 'es';
-            } elseif (startsWith($locale, 'sr')) {
-                $gaia_locale = 'sr-Cyrl';
-            } else {
-                $gaia_locale = $locale;
-            }
-
-            $aurora_path = DATA . '/hg/AURORA_L10N/' . $locale . '/';
-            $gaia_path   = DATA . '/hg/GAIA/' . $gaia_locale . '/';
-            $www_path    = DATA . '/svn/mozilla_org/' . $locale . '/';
+            $repos = [
+                'aurora' => [
+                    'path' => DATA . '/hg/AURORA_L10N/' . $locale . '/',
+                    'vcs'  => 'hg',
+                ],
+                'gaia' => [
+                    'path' => DATA . '/hg/GAIA/' . getGaiaLocale($locale) . '/',
+                    'vcs'  => 'hg',
+                ],
+                'www' => [
+                    'path' => DATA . '/svn/mozilla_org/' . $locale . '/',
+                    'vcs'  => 'svn',
+                ],
+            ];
 
             $get_localizers = function ($commits) use ($exclusion_list, $locale, $people) {
                 if ($locale == 'fr') {
@@ -31,57 +46,27 @@ function getLocalizersInLogs($exclusion_list, $people)
                 return array_values(array_diff(getEmails($commits, $people), $exclusion_list));
             };
 
-            $localizers[$locale]['gaia'] = [];
-            $localizers[$locale]['aurora']= [];
-            $localizers[$locale]['www'] = [];
+            foreach (array_keys($repos) as $target) {
+                $lang = ($target == 'gaia') ? getGaiaLocale($locale) : $locale;
 
-            // Aurora
-            if (is_dir($aurora_path)) {
+                if (is_dir($repos[$target]['path'])) {
 
-                $aurora_commits = getRepositoryLog($aurora_path);
+                    $commits = getRepositoryLog($repos[$target]['path']);
 
-                if (isset($localizers[$locale]['aurora'])) {
-                    $localizers[$locale]['aurora'] = array_merge(
-                        $localizers[$locale]['aurora'],
-                        $get_localizers($aurora_commits)
-                    );
-                } else {
-                    $localizers[$locale]['aurora'] = $get_localizers($aurora_commits);
-                }
-            }
-
-            // Gaia
-            if (is_dir($gaia_path)) {
-
-                $gaia_commits = getRepositoryLog($gaia_path);
-
-                if (isset($localizers[$gaia_locale]['gaia'])) {
-                    $localizers[$gaia_locale]['gaia'] = array_merge(
-                        $localizers[$gaia_locale]['gaia'],
-                        $get_localizers($gaia_commits)
-                    );
-                } else {
-                    $localizers[$gaia_locale]['gaia'] = $get_localizers($gaia_commits);
-                }
-
-                $localizers[$gaia_locale]['gaia'] = array_unique($localizers[$gaia_locale]['gaia']);
-            }
-
-            // www
-            if (is_dir($www_path)) {
-
-                $www_commits = getRepositoryLog($www_path, 'svn');
-
-                if (isset($localizers[$locale]['www'])) {
-                    $localizers[$locale]['www'] = array_merge(
-                        $localizers[$locale]['www'],
-                        $get_localizers($www_commits)
-                    );
-                } else {
-                    $localizers[$locale]['www'] = $get_localizers($www_commits);
+                    if (isset($localizers[$lang][$target])) {
+                        $localizers[$lang][$target] = array_merge(
+                            $localizers[$lang][$target],
+                            $get_localizers($commits)
+                        );
+                    } else {
+                        $localizers[$lang][$target] = $get_localizers($commits);
+                    }
                 }
             }
         }
+
+        // Remove duplicate for Spanish in Gaia because we map es-AR/CL/ES/MX to es
+        $localizers['es']['gaia'] = array_unique($localizers['es']['gaia']);
 
         file_put_contents($cached_data, serialize($localizers));
     }
