@@ -14,9 +14,18 @@ foreach (locales() as $locale) {
     }
 
     $repos = [
-        'aurora' => [DATA . '/hg/AURORA_L10N/' . $locale . '/', 'hg'],
-        'gaia'   => [DATA . '/hg/GAIA/' . $gaia_locale . '/', 'hg'],
-        'www'    => [DATA . '/svn/mozilla_org/' . $locale . '/', 'svn'],
+        'aurora' => [
+            'path' => DATA . '/hg/AURORA_L10N/' . $locale . '/',
+            'vcs'  => 'hg'
+        ],
+        'gaia' => [
+            'path' => DATA . '/hg/GAIA/' . $gaia_locale . '/',
+            'vcs'  => 'hg'
+        ],
+        'www' => [
+            'path' => DATA . '/svn/mozilla_org/' . $locale . '/',
+            'vcs'  => 'svn'
+        ],
     ];
 
     $target = CACHE_PATH . 'cache_' . $locale . '_serial.php';
@@ -24,7 +33,7 @@ foreach (locales() as $locale) {
     // Caching data
     if (! is_file($target)) {
         $get_commits = function($project) use($repos){
-            return is_dir($repos[$project][0]) ? getRepositoryLog($repos[$project][0], $repos[$project][1]) : [];
+            return is_dir($repos[$project]['path']) ? getRepositoryLog($repos[$project]['path'], $repos[$project]['vcs']) : [];
         };
 
         // We create a cache file for a locale containing all commits to all repos
