@@ -15,15 +15,15 @@ namespace Community;
 class Directory
 {
     /*
-      $people = [
+        $people = [
             'john@doe.com' => [
                 'name'         => 'John Doe',
                 'locale'       => ['fr', 'de'],
                 'other_emails' => ['john2@doe.com', 'john3@doe.org'],
                 'other_names'  => ['Johnny Begood', 'John the great'],
             ],
-            ...
-      ];
+        …etc…
+        ];
 
     */
     public $people = [];
@@ -125,7 +125,12 @@ class Directory
     public function getAllEmails()
     {
         if ($this->getKey('other_emails')) {
-            return array_unique(array_merge($this->getKey('other_emails'), [$this->getEmail()]));
+            return array_unique(
+                array_merge(
+                    $this->getKey('other_emails'),
+                    [$this->getEmail()]
+                )
+            );
         }
 
         return [key($this->person)];
@@ -141,7 +146,12 @@ class Directory
     public function getAllNames()
     {
         if ($this->getKey('other_names')) {
-            return array_unique(array_merge($this->getKey('other_names'), [$this->getName()]));
+            return array_unique(
+                array_merge(
+                    $this->getKey('other_names'),
+                    [$this->getName()]
+                )
+            );
         }
 
         return [$this->getName()];
@@ -155,10 +165,8 @@ class Directory
      */
     private function getKey($key)
     {
-        if (isset($this->person[key($this->person)][$key])) {
-            return $this->person[key($this->person)][$key];
-        }
-
-        return false;
+        return isset($this->person[key($this->person)][$key])
+               ? $this->person[key($this->person)][$key]
+               : false;
     }
 }

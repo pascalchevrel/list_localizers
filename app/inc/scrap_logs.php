@@ -2,39 +2,42 @@
 
 foreach (locales() as $locale) {
 
-    if (startsWith($locale, 'es-')) {
-        $gaia_locale = 'es';
-    } elseif (startsWith($locale, 'sr')) {
-        $gaia_locale = 'sr-Cyrl';
-    } else {
-        $gaia_locale = $locale;
+    switch($locale) {
+        case startsWith($locale, 'es-'):
+            $gaia_locale = 'es';
+            break;
+        case startsWith($locale, 'sr'):
+            $gaia_locale = 'sr-Cyrl';
+            break;
+        default:
+            $gaia_locale = $locale;
     }
 
-    $aurora_path = DATA . '/hg/AURORA_L10N/' . $locale . '/';
-    $gaia_path   = DATA . '/hg/GAIA/' . $gaia_locale . '/';
-    $www_path    = DATA . '/svn/mozilla_org/' . $locale . '/';
-
-    $aurora_commits = $gaia_commits = $www_commits = [];
+    $repos = [
+        'aurora' => [DATA . '/hg/AURORA_L10N/' . $locale . '/', 'hg'],
+        'gaia'   => [DATA . '/hg/GAIA/' . $gaia_locale . '/', 'hg'],
+        'www'    => [DATA . '/svn/mozilla_org/' . $locale . '/', 'svn'],
+    ];
 
     $target = CACHE_PATH . 'cache_' . $locale . '_serial.php';
 
+    // Caching data
     if (! is_file($target)) {
-        if (is_dir($aurora_path)) {
-            $aurora_commits = getRepositoryLog($aurora_path);
-        }
-
-        if (is_dir($gaia_path)) {
-            $gaia_commits = getRepositoryLog($gaia_path);
-        }
-
-        if (is_dir($www_path)) {
-            $www_commits = getRepositoryLog($www_path, 'svn');
-        }
+        $get_commits = function($project) use($repos){
+            return is_dir($repos[$project][0]) ? getRepositoryLog($repos[$project][0], $repos[$project][1]) : [];
+        };
 
         // We create a cache file for a locale containing all commits to all repos
         file_put_contents(
             $target,
-            serialize(array_merge($aurora_commits, $gaia_commits, $www_commits))
+            serialize(
+                array_merge(
+                    $get_commits('aurora'),
+                    $get_commits('gaia'),
+                    $get_commits('www')
+                )
+            )
         );
     }
 }
+

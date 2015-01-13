@@ -12,10 +12,15 @@ require_once __DIR__ . '/../settings/constants.php';
 // Autoloading of classes (both /vendor and /classes)
 require_once INSTALL . 'vendor/autoload.php';
 
-// Load the list of all known localizers 
+// Load the list of all known localizers
 require_once __DIR__ . '/localizers.php';
 
 // Initialize our list of localizers based on the white list in localizers.php
 $localizers = new Directory($people);
+
+// After this point, all instructions are for the web app only
+if (php_sapi_name() == 'cli') {
+    return;
+}
 
 require_once __DIR__ . '/../controllers/main_controller.php';

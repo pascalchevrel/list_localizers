@@ -13,8 +13,13 @@ define('TEMPLATES',     APP . 'templates/');
 define('DEBUG',         true);
 
 // project specific constants
-define('DATA', realpath(__DIR__ . '/../../data') . '/');
+define('DATA', realpath(__DIR__ . '/../../data'));
 define('CACHE_PATH', realpath(__DIR__ . '/../../cache/') . '/');
+
+// After this point, all instructions are for the web app only
+if (php_sapi_name() == 'cli') {
+    return;
+}
 
 if ($_SERVER['SERVER_NAME'] == 'l10n.mozilla-community.org') {
     define('BASE_HTML_URL', 'https://l10n.mozilla-community.org/~pascalc/google_play_description/');
