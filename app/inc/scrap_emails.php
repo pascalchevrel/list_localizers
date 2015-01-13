@@ -1,16 +1,5 @@
 <?php
-function getGaiaLocale($locale)
-{
-    if (startsWith($locale, 'es-')) {
-        return 'es';
-    }
 
-    if (startsWith($locale, 'sr')) {
-        return 'sr-Cyrl';
-    }
-
-    return $locale;
-}
 
 function getLocalizersInLogs($exclusion_list, $people)
 {
@@ -20,21 +9,6 @@ function getLocalizersInLogs($exclusion_list, $people)
         $localizers = [];
 
         foreach (locales() as $locale) {
-
-            $repos = [
-                'aurora' => [
-                    'path' => DATA . '/hg/AURORA_L10N/' . $locale . '/',
-                    'vcs'  => 'hg',
-                ],
-                'gaia' => [
-                    'path' => DATA . '/hg/GAIA/' . getGaiaLocale($locale) . '/',
-                    'vcs'  => 'hg',
-                ],
-                'www' => [
-                    'path' => DATA . '/svn/mozilla_org/' . $locale . '/',
-                    'vcs'  => 'svn',
-                ],
-            ];
 
             $get_localizers = function ($commits) use ($exclusion_list, $locale, $people) {
                 if ($locale == 'fr') {
@@ -46,12 +20,12 @@ function getLocalizersInLogs($exclusion_list, $people)
                 return array_values(array_diff(getEmails($commits, $people), $exclusion_list));
             };
 
-            foreach (array_keys($repos) as $target) {
+            foreach (array_keys(repos($locale)) as $target) {
                 $lang = ($target == 'gaia') ? getGaiaLocale($locale) : $locale;
 
-                if (is_dir($repos[$target]['path'])) {
+                if (is_dir(repos($locale)[$target]['path'])) {
 
-                    $commits = getRepositoryLog($repos[$target]['path']);
+                    $commits = getRepositoryLog(repos($locale)[$target]['path']);
 
                     if (isset($localizers[$lang][$target])) {
                         $localizers[$lang][$target] = array_merge(

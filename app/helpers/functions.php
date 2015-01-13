@@ -151,6 +151,36 @@ function locales()
     return array_diff($files, $excluded_files);
 }
 
+function repos($locale) {
+    return [
+        'aurora' => [
+            'path' => DATA . '/hg/AURORA_L10N/' . $locale . '/',
+            'vcs'  => 'hg'
+        ],
+        'gaia' => [
+            'path' => DATA . '/hg/GAIA/' . getGaiaLocale($locale) . '/',
+            'vcs'  => 'hg'
+        ],
+        'www' => [
+            'path' => DATA . '/svn/mozilla_org/' . $locale . '/',
+            'vcs'  => 'svn'
+        ],
+    ];
+}
+
+function getGaiaLocale($locale)
+{
+    if (startsWith($locale, 'es-')) {
+        return 'es';
+    }
+
+    if (startsWith($locale, 'sr')) {
+        return 'sr-Cyrl';
+    }
+
+    return $locale;
+}
+
 function inString($haystack, $needle)
 {
     return mb_strpos($haystack, $needle, $offset = 0, 'UTF-8') !== false ? true : false;
