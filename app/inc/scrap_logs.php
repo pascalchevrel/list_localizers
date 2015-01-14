@@ -15,13 +15,7 @@ foreach (locales() as $locale) {
         // We create a cache file for a locale containing all commits to all repos
         file_put_contents(
             $target,
-            serialize(
-                array_merge(
-                    $get_commits('aurora'),
-                    $get_commits('gaia'),
-                    $get_commits('www')
-                )
-            )
+            serialize(array_merge($get_commits('aurora'), $get_commits('gaia'), $get_commits('www')))
         );
     }
 }
