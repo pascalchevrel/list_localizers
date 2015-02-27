@@ -12,12 +12,13 @@ define('SETTINGS',      APP . 'settings/');
 define('TEMPLATES',     APP . 'templates/');
 define('DEBUG',         true);
 
-// project specific constants
+// Project specific constants
 define('DATA', realpath(__DIR__ . '/../../data'));
+define('APP_DATA', realpath(__DIR__ . '/../data'));
 define('CACHE_PATH', realpath(__DIR__ . '/../../cache/') . '/');
 
 // After this point, all instructions are for the web app only
-if (php_sapi_name() == 'cli') {
+if (PHP_SAPI == 'cli') {
     return;
 }
 
