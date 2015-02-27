@@ -186,10 +186,15 @@ function inString($haystack, $needle)
     return mb_strpos($haystack, $needle, $offset = 0, 'UTF-8') !== false ? true : false;
 }
 
-function getBufferedInclude($include)
+function getBufferedInclude($include, $template)
 {
     ob_start();
     include $include;
+    $content = ob_get_contents();
+    ob_end_clean();
+
+    ob_start();
+    include $template;
     $content = ob_get_contents();
     ob_end_clean();
 
