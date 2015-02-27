@@ -13,11 +13,5 @@ require_once __DIR__ . '/../settings/constants.php';
 // Autoloading of classes (both /vendor and /classes)
 require_once INSTALL . 'vendor/autoload.php';
 
-// Load the list of all known localizers
-require_once __DIR__ . '/localizers.php';
-
-// Initialize our list of localizers based on the white list in localizers.php
-$localizers = new Directory($people);
-
 // Dispatch urls, use it only in web context
 require_once INC . 'dispatcher.php';
