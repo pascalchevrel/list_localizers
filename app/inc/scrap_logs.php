@@ -1,12 +1,11 @@
 <?php
 
 foreach (locales() as $locale) {
-
     $target = CACHE_PATH . 'cache_' . $locale . '_serial.php';
 
     // Caching data
     if (! is_file($target)) {
-        $get_commits = function($project) use($locale) {
+        $get_commits = function ($project) use ($locale) {
             return is_dir(repos($locale)[$project]['path'])
                 ? getRepositoryLog(repos($locale)[$project]['path'], repos($locale)[$project]['vcs'])
                 : [];
@@ -19,4 +18,3 @@ foreach (locales() as $locale) {
         );
     }
 }
-

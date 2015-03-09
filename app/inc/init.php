@@ -1,6 +1,4 @@
 <?php
-use Community\Directory;
-use Symfony\VarDumper;
 
 date_default_timezone_set('Europe/Paris');
 

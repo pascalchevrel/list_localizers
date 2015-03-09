@@ -3,13 +3,12 @@
 
 function getLocalizersInLogs($exclusion_list, $people)
 {
-    $cached_data = CACHE_PATH . 'emails.php' ;
+    $cached_data = CACHE_PATH . 'emails.php';
 
     if (! file_exists($cached_data)) {
         $localizers = [];
 
         foreach (locales() as $locale) {
-
             $get_localizers = function ($commits) use ($exclusion_list, $locale, $people) {
                 if ($locale == 'fr') {
                     $exclusion_list = array_diff(
@@ -17,6 +16,7 @@ function getLocalizersInLogs($exclusion_list, $people)
                         ['pascal.chevrel@free.fr', 'theo.chevalier11@gmail.com']
                     );
                 }
+
                 return array_values(array_diff(getEmails($commits, $people), $exclusion_list));
             };
 
@@ -24,7 +24,6 @@ function getLocalizersInLogs($exclusion_list, $people)
                 $lang = ($target == 'gaia') ? getGaiaLocale($locale) : $locale;
 
                 if (is_dir(repos($locale)[$target]['path'])) {
-
                     $commits = getRepositoryLog(repos($locale)[$target]['path']);
 
                     if (isset($localizers[$lang][$target])) {

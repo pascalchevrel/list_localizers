@@ -20,7 +20,6 @@ function normalizeCommits($commits, $people)
                     $commits[$key]['email'] = $people_key;
                 }
             }
-
         }
     }
 
@@ -63,7 +62,7 @@ function getLocalizersForRepo($project, $locale, $localizers, $output = 'cli')
     }
 
     $repos = [
-        'gaia'   =>  'Gaia',
+        'gaia'   => 'Gaia',
         'aurora' => 'Aurora',
         'www'    => 'mozilla.org',
     ];
@@ -101,6 +100,7 @@ function printCLI($data)
 {
     if (is_string($data) || is_null($data)) {
         print $data . "\n";
+
         return;
     }
 
@@ -122,7 +122,7 @@ function getRepositoryLog($path, $type = 'hg')
     if (! file_exists($file)) {
         if ($type == 'hg') {
             $repository = new VCS\Mercurial($path);
-        } elseif ($type =='git') {
+        } elseif ($type == 'git') {
             $repository = new VCS\Git($path);
         } else {
             $repository = new VCS\Subversion($path);
@@ -151,19 +151,20 @@ function locales()
     return array_diff($files, $excluded_files);
 }
 
-function repos($locale) {
+function repos($locale)
+{
     return [
         'aurora' => [
             'path' => DATA . '/hg/AURORA_L10N/' . $locale . '/',
-            'vcs'  => 'hg'
+            'vcs'  => 'hg',
         ],
         'gaia' => [
             'path' => DATA . '/hg/GAIA/' . getGaiaLocale($locale) . '/',
-            'vcs'  => 'hg'
+            'vcs'  => 'hg',
         ],
         'www' => [
             'path' => DATA . '/svn/mozilla_org/' . $locale . '/',
-            'vcs'  => 'svn'
+            'vcs'  => 'svn',
         ],
     ];
 }

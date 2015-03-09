@@ -39,4 +39,3 @@ print "Locale: $locale\n";
 print getLocalizersForRepo('gaia', $locale, $localizers_logs);
 print getLocalizersForRepo('aurora', $locale, $localizers_logs);
 print getLocalizersForRepo('www', $locale, $localizers_logs);
-

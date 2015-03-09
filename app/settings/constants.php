@@ -25,7 +25,7 @@ if (PHP_SAPI == 'cli') {
 if ($_SERVER['SERVER_NAME'] == 'l10n.mozilla-community.org') {
     define('BASE_HTML_URL', 'https://l10n.mozilla-community.org/~pascalc/google_play_description/');
 } elseif ($_SERVER['SERVER_NAME'] == 'demos.mozfr.org') {
-    define('BASE_HTML_URL', 'http://' . $_SERVER['HTTP_HOST'] .'/list_localizers/web/');
+    define('BASE_HTML_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/list_localizers/web/');
 } else {
-    define('BASE_HTML_URL', 'http://' . $_SERVER['HTTP_HOST'] .'/');
+    define('BASE_HTML_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/');
 }

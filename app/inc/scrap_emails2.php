@@ -2,15 +2,14 @@
 
 function getLocalizersInLogs($exclusion_list, $people)
 {
-    $cached_data = CACHE_PATH . 'emails.php' ;
+    $cached_data = CACHE_PATH . 'emails.php';
 
     if (! file_exists($cached_data)) {
-
         $localizers = [];
 
         foreach (locales() as $locale) {
-            $get_locale = function($locale) use ($target){
-                switch($locale) {
+            $get_locale = function ($locale) use ($target) {
+                switch ($locale) {
                     case startsWith($locale, 'es-'):
                         $locale = 'es';
                         break;
@@ -20,6 +19,7 @@ function getLocalizersInLogs($exclusion_list, $people)
                     default:
                         break;
                 }
+
                 return $locale;
             };
 
@@ -30,6 +30,7 @@ function getLocalizersInLogs($exclusion_list, $people)
                         ['pascal.chevrel@free.fr', 'theo.chevalier11@gmail.com']
                     );
                 }
+
                 return array_values(array_diff(getEmails($commits, $people), $exclusion_list));
             };
 
@@ -38,23 +39,21 @@ function getLocalizersInLogs($exclusion_list, $people)
             $localizers[$locale]['www'] = [];
 
             foreach (['aurora', 'gaia', 'www'] as $target) {
-
                 $repos = [
                     'aurora' => [
                         'path' => DATA . '/hg/AURORA_L10N/' . $get_locale($locale) . '/',
-                        'vcs'  => 'hg'
+                        'vcs'  => 'hg',
                     ],
                     'gaia' => [
                         'path' => DATA . '/hg/GAIA/' . $get_locale($locale) . '/',
-                        'vcs'  => 'hg'
+                        'vcs'  => 'hg',
                     ],
                     'www' => [
                         'path' => DATA . '/svn/mozilla_org/' . $get_locale($locale) . '/',
-                        'vcs'  => 'svn'
+                        'vcs'  => 'svn',
                     ],
                 ];
                 if (is_dir($repos[$target]['path'])) {
-
                     $commits[$target] = getRepositoryLog($repos[$target]['path'], $repos[$target]['vcs']);
 
                     if (isset($localizers[$locale][$target])) {

@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-use Community\Directory;
 
 $command_help = "List all the localizers we get from logs\n";
 
@@ -52,7 +51,6 @@ foreach (locales() as $locale) {
 
         // email not added yet
         if (! isset($localizers_in_logs[$email])) {
-
             $localizers->setPerson($email);
 
             if (! is_null($localizers->getName())) {

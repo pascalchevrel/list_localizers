@@ -15,7 +15,6 @@ td,th {
 </head>
 <body>
 <?php
-use Community\Directory;
 
 require_once __DIR__ . '/../app/inc/init.php';
 require_once __DIR__ . '/../app/inc/scrap_emails.php';
@@ -75,9 +74,7 @@ foreach ($all as $email) {
 
     // We look for the last commit by the person
     foreach ($commits as $key => $values) {
-
         if ($email == $values['email']) {
-
             if ($values['date'] > $y2014) {
                 if (! isset($community_2014[$email])) {
                     $community_2014[$email] = $values;
@@ -112,9 +109,7 @@ foreach ($all as $email) {
             }
         }
     }
-
 }
-
 
 $y = function ($year, $arr) {
     print "$year: " . count($arr) . '<br>';
@@ -165,7 +160,6 @@ print '<th>Locale</th><th>Name</th><th>Email</th><th>Date of last Commit</th><th
 print '</tr>';
 
 foreach ($lost_in_2014 as $email) {
-
     $localizers->setPerson($email);
 
     $commits = unserialize(file_get_contents(

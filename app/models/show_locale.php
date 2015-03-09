@@ -1,5 +1,4 @@
 <?php
-use Community\Directory;
 
 require_once __DIR__ . '/../app/inc/init.php';
 require_once __DIR__ . '/../app/inc/scrap_emails.php';

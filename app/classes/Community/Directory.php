@@ -88,7 +88,7 @@ class Directory
             return $this->getKey('locale')[0];
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -102,7 +102,7 @@ class Directory
             return $this->getKey('name');
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -161,7 +161,7 @@ class Directory
      * Utility function to return a row for a person's file using the row id.
      *
      * @param  string $key Key identifing a row in the $person array
-     * @return mixed The data contained in this row, can be any type.
+     * @return mixed  The data contained in this row, can be any type.
      */
     private function getKey($key)
     {
