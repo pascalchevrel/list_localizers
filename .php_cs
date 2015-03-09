@@ -2,7 +2,8 @@
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->exclude('vendor')
-    ->exclude('web/TMX')
+    ->exclude('cache')
+    ->exclude('data')
     ->in(__DIR__)
 ;
 
