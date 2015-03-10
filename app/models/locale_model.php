@@ -4,7 +4,7 @@
  */
 use Community\Directory;
 
-include APP_DATA . '/locales.php';
+include APP_DATA . 'locales.php';
 
 if (! isset($_GET['locale']) || ! in_array($_GET['locale'], $locales)) {
     $title = $content = 'Invalid Locale code';
