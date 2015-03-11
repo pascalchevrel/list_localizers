@@ -2,6 +2,7 @@
 /**
  * Locale page: displays committers information for the locale.
  */
+
 use Community\Directory;
 
 include APP_DATA . 'locales.php';
@@ -16,11 +17,11 @@ if (! isset($_GET['locale']) || ! in_array($_GET['locale'], $locales)) {
 $locale = $_GET['locale'];
 $title  = 'Locale: ' . $locale;
 
-// Load the list of all known localizers
-require_once APP_DATA . '/localizers.php';
+// Initialize our list of localizers based on a white list in localizers.php
+$localizers = new Directory(include APP_DATA . '/localizers.php');
 
-// Initialize our list of localizers based on the white list in localizers.php
-$known_localizers = new Directory($people);
+$content = dump($localizers);
 
-$content = dump($known_localizers);
+print $locale;
+
 include VIEWS . '/locale_view.php';

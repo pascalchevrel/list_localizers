@@ -58,7 +58,7 @@ $exclusion_list = [
     'flod@lodolo.net', // Ignored because commits for localizers
 ];
 
-$people = [
+return [
     'friedel@translate.org.za' => [
         'name'         => 'friedel@translate.org.za',
         'locale'       => ['af'],

@@ -17,7 +17,7 @@ define('DATA',       realpath(__DIR__ . '/../../data') . '/');
 define('APP_DATA',   realpath(__DIR__ . '/../data') . '/');
 define('CACHE_PATH', realpath(__DIR__ . '/../../cache/') . '/');
 
-// After this point, all instructions are for the web app only
+// After this point, all instructions are for the Web app only
 if (PHP_SAPI == 'cli') {
     return;
 }
