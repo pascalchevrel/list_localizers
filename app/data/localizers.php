@@ -1377,7 +1377,13 @@ return [
         'other_names'  => []
     ],
     'chiorean.ioana@gmail.com' => [
-        'name'         => 'Stefania Ioana Chiorean ',
+        'name'         => 'Stefania Ioana Chiorean',
+        'locale'       => ['ro'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'jobaval10n@gmail.com' => [
+        'name'         => 'Jobava',
         'locale'       => ['ro'],
         'other_emails' => [],
         'other_names'  => []
