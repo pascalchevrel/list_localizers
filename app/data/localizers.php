@@ -89,8 +89,26 @@ return [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'nefzaoui@arabicmozilla.org' => [
+        'name'         => 'Ahmed Nefzaoui',
+        'locale'       => ['ar'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'khaledhosny@eglug.org' => [
         'name'         => 'Khaled Hosny',
+        'locale'       => ['ar'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'rami223@gmail.com' => [
+        'name'         => 'Rami Khader ',
+        'locale'       => ['ar'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
+    'manel.rhaiem92@gmail.com' => [
+        'name'         => 'Manel Rhaiem',
         'locale'       => ['ar'],
         'other_emails' => [],
         'other_names'  => []
@@ -495,7 +513,7 @@ return [
     'inmitabarrios@gmail.com' => [
         'name'         => 'Inma Barrios',
         'locale'       => ['es-ES'],
-        'other_emails' => [],
+        'other_emails' => ['inma.barrios@mozilla-hispano.org'],
         'other_names'  => []
     ],
     'ravmn@ravmn.com' => [
@@ -1491,6 +1509,12 @@ return [
         'other_emails' => [],
         'other_names'  => []
     ],
+    'faradzhev.timur@gmail.com' => [
+        'name'         => 'Tymur Faradzhev',
+        'locale'       => ['uk'],
+        'other_emails' => [],
+        'other_names'  => []
+    ],
     'huda.sarfraz@gmail.com' => [
         'name'         => 'Huda Sarfraz',
         'locale'       => ['ur'],
@@ -1543,6 +1567,12 @@ return [
         'name'         => 'Tim Guan-Tin Chien',
         'locale'       => ['zh-TW'],
         'other_emails' => ['tchien@mozilla.com'],
+        'other_names'  => []
+    ],
+    'pontoon@mozilla.com' => [
+        'name'         => 'Pontoon',
+        'locale'       => [],
+        'other_emails' => [],
         'other_names'  => []
     ],
     'exclusion@list' => [
